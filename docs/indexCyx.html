@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>测试页</title>
+  <link rel="stylesheet" href="../src/theme/wingconn.css">
+  <script src="lib/vue.js"></script>
+  <script src="../dist/wingconn.js"></script>
+  <style>
+    body{padding: 10px;}
+    h1{border-bottom: 1px solid #ccc;}
+  </style>
+</head>
+<body>
+<div id="button">
+
+  <w-icon type="checkmark" color="energized" size="20"></w-icon>
+  <w-icon type="close" color="stable" size="15"></w-icon>
+  <w-icon type="home" color="positive" size="29"></w-icon>
+  <w-icon type="android-share" color="calm"></w-icon>
+
+
+  <br>
+  <w-input  v-model="username" type="text" label="用户名"   placeholder="输入内容"></w-input>
+  <w-input type="email" v-model="useremail" placeholder="输入邮箱"></w-input>
+  <br>
+  <w-search v-model="keywords" :on-search="onSearch" :on-cancel="onCancel" placeholder="搜索" cancel-text="清空"></w-search>
+</div>
+<script>
+  var vm = new Vue({
+    data: {
+        username: '',
+        keywords:'',
+        useremail:''
+    },
+     methods:{
+         onSearch:function(){
+            console.log(this.keywords);
+         },
+         onCancel:function(){
+             this.keywords = '';
+         }
+     }
+  
+  }).$mount('#button');
+
+</script>
+</body>
+</html>

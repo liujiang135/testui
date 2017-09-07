@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <title>测试页</title>
+  <link rel="stylesheet" href="../src/theme/wingconn.css">
+  <script src="lib/vue.js"></script>
+  <script src="../dist/wingconn.js"></script>
+  <style>
+    body{padding: 10px;}
+    h1{border-bottom: 1px solid #ccc; background-color: orange; color: #fff; padding: 5px 10px;}
+  </style>
+</head>
+<body>
+<!--Button-->
+<div id="button">
+  <h1>按钮</h1>
+  <h2>属性</h2>
+  <p>color【assertive, positive, balanced, energized, calm, royal, dark, light, clear】</p>
+  <w-button color="assertive">按钮</w-button>
+  <w-button color="positive">按钮</w-button>
+  <w-button color="balanced">按钮</w-button>
+  <w-button color="energized">按钮</w-button>
+  <w-button color="calm">按钮</w-button>
+  <w-button color="royal">按钮</w-button>
+  <w-button color="dark">按钮</w-button>
+  <w-button color="light">按钮</w-button>
+
+  <p>block【true, *false】</p>
+  <w-button color="positive" block="true">按钮</w-button>
+  <w-button color="positive" block="false">按钮</w-button>
+
+  <p>size【large, *(empty), small】</p>
+  <w-button color="positive" block="false" size="large">按钮</w-button>
+  <w-button color="positive" block="false">按钮</w-button>
+  <w-button color="positive" block="false" size="small">按钮</w-button>
+
+  <p>plain【true, *false】</p>
+  <w-button color="positive" block="false" plain="true">按钮</w-button>
+  <w-button color="positive" block="false" plain="false">按钮</w-button>
+
+  <p>clear【true, *false】</p>
+  <w-button color="positive" block="false" clear="true">按钮</w-button>
+  <w-button color="positive" block="false" clear="false">按钮</w-button>
+
+  <p>disabled【true, *false】</p>
+  <w-button color="positive" block="false" disabled="true">按钮</w-button>
+  <w-button color="positive" block="false" disabled="false">按钮</w-button>
+
+  <p>shape【*(empty), oval】</p>
+  <w-button color="positive">按钮</w-button>
+  <w-button color="positive" shape="oval">这是椭圆</w-button>
+  <w-button color="positive" shape="oval" style="width: 50px; height: 50px;">圆</w-button>
+
+  <p>icon【checkmark, close, android-arrow-up, android-arrow-down, android-arrow-forward, android-arrow-back, home, android-share, power ...】</p>
+  <w-button color="balanced" shape="oval" icon="checkmark" style="width: 50px; height: 50px;"></w-button>
+  <w-button color="assertive" shape="oval" icon="close" style="width: 50px; height: 50px;"></w-button>
+  <w-button color="positive" shape="oval" icon="android-arrow-up" style="width: 50px; height: 50px;"></w-button>
+  <w-button color="positive" shape="oval" icon="android-arrow-down" style="width: 50px; height: 50px;"></w-button>
+  <w-button color="positive" shape="oval" icon="android-arrow-forward" style="width: 50px; height: 50px;"></w-button>
+  <w-button color="positive" shape="oval" icon="android-arrow-back" style="width: 50px; height: 50px;"></w-button>
+  <w-button color="energized" shape="oval" icon="home" style="width: 50px; height: 50px;"></w-button>
+  <w-button color="calm" shape="oval" icon="android-share" style="width: 50px; height: 50px;"></w-button>
+  <w-button color="dark" icon="power">关机</w-button>
+  <div>
+    <a href="http://ionicons.com/">更多图标</a>
+  </div>
+
+  <h2>事件</h2>
+  <p>单击事件</p>
+  <w-button color="positive" block="false" @click="showMsg">按钮</w-button>
+</div>
+<script>
+  var vm1 = new Vue({
+    methods: {
+      showMsg(){
+        alert('按钮被点击');
+      }
+    }
+  }).$mount('#button');
+
+</script>
+
+<!--Toggle-->
+<div id="toggle">
+  <h1>开关</h1>
+  <h2>属性</h2>
+
+  <p>color【*positive, balanced, assertive, energized, calm, dark】</p>
+  <w-toggle v-model="status1" color="positive"></w-toggle>
+  <w-toggle v-model="status2" color="balanced"></w-toggle>
+  <w-toggle v-model="status3" color="assertive"></w-toggle>
+  <w-toggle v-model="status4" color="energized"></w-toggle>
+  <w-toggle v-model="status5" color="calm"></w-toggle>
+  <w-toggle v-model="status6" color="dark"></w-toggle>
+
+  <p>text【*(empty)】</p>
+  <w-toggle v-model="status7" text="文本信息"></w-toggle>
+
+  <h2>事件</h2>
+  <w-toggle v-model="status8" @change="change()"></w-toggle>
+  <div>
+    <a href="javascript:void(0)" onclick="showToggleStatus()">获取Toggle状态</a>
+  </div>
+</div>
+<script>
+  var vm2 = new Vue({
+    data: {
+      status1: 'on',
+      status2: 'on',
+      status3: 'on',
+      status4: 'on',
+      status5: 'on',
+      status6: 'on',
+      status7: 'on',
+      status8: 'on'
+    },
+    methods: {
+      change(){
+        alert(this.status8);
+      }
+    }
+  }).$mount('#toggle');
+
+  function showToggleStatus(){
+    alert(vm2.status8);
+  }
+</script>
+
+<!--Radio-->
+<div id="radio">
+  <h1>Radio</h1>
+  <h2>属性</h2>
+  <p>val: radio的值</p>
+  <p>text: 显示的文本</p>
+  <p>color: 颜色【*positive, balanced, assertive, energized, calm, dark】</p>
+  <h2>事件</h2>
+  <p>change事件</p>
+
+
+  <w-radio text="单选1" color="balanced" v-model="value" val="1"></w-radio>
+  <w-radio text="单选2" color="balanced" v-model="value" val="2"></w-radio>
+  <div>
+    <a href="javascript:void(0)" onclick="getRadioStatus()">获取选中的值</a>
+  </div>
+</div>
+<script>
+  var vm3 = new Vue({
+    data: {
+      value: '1'
+    }
+  }).$mount('#radio');
+  function getRadioStatus(){
+    alert(vm3.value);
+  }
+</script>
+
+
+<!--<div id="dialog">
+  <h1>对话框</h1>
+  <h2>属性</h2>
+  <p>title</p>
+  <p>size【*tiny, small, large, full】</p>
+  <w-dialog title="提示信息" size="tiny" v-model="dialogVisible">
+    <div>内容信息</div>
+    <div slot="footer">
+      <w-button color="primary" @click="confirm">确定</w-button>
+      <w-button @click="cancel">取消</w-button>
+    </div>
+  </w-dialog>
+  <a href="javascript:void(0)" @click="open">打开对话框</a>
+</div>
+<script>
+  var options = {
+    data(){
+      return {
+        dialogVisible: false
+      }
+    },
+    methods: {
+      open(){
+        this.dialogVisible = true;
+      },
+      close(){
+        this.dialogVisible = false;
+      },
+      confirm(){
+        alert('确定按钮被点击');
+      },
+      cancel(){
+        this.dialogVisible = false;
+      }
+    }
+  };
+  var Dialog = Vue.extend(options);
+  new Dialog().$mount('#dialog');
+</script>-->
+</body>
+</html>

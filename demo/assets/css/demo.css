@@ -1,0 +1,58 @@
+@charset "UTF-8";
+body { background: #f4f4f4; }
+.logo {
+    text-align: center;
+    width: 100%;
+}
+.logo img {
+    margin: 30px auto 0;
+}
+.code-name {
+    color: #47b584;
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    font-size: 24px;
+    line-height: 24px;
+    margin-bottom: 10px;
+    padding: 5px 0 0 2px;
+}
+.code-desc {
+    color: #999;
+    font-family: "Avenir", Helvetica, Arial, sans-serif;
+    margin: 5px auto 15px;
+}
+.page {
+    background-color: #f4f4f4;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+.page.has-navbar .page-content {
+    padding-top: 44px;
+}
+.page.has-navbar.padding-top {
+    padding-top: 54px;
+}
+/*组件header*/
+.blue-bg {
+    background: #1185e7;
+}
+.blue-bg h1,.bar .button{color: #ffffff;}
+.blue-bg a{
+    color:#ffffff;
+    padding-bottom:5px;
+    margin-left: 10px;
+}
+.blue-bg a.router-link-active{
+    border-bottom: 2px solid #ffffff;
+}
+/*组件页面*/
+.item-icon-right .icon {color:#ccc;font-size:25px;}
+.component-body{padding: 10px 10px 50px 10px;}
+h3{font-size:16px;min-height: 30px; color: #222; font-weight: 500;border-bottom: 1px solid #ddd;}
+h4{color: #76c043;}
+.p-sub-item{color: #666;}

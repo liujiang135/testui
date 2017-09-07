@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+  <title>AAS</title>
+  <link rel="stylesheet" href="assets/css/wingconn.css"/>
+</head>
+<body>
+<div id="app"></div>
+<script src="dist/build.js"></script>
+<script type="application/javascript">
+    //加载本地图片
+    function loadimg(imgobj) {
+        var appicon = imgobj.getAttribute('appicon');
+        window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function (fs) {
+            alert('打开的文件系统: ' + JSON.stringify(fs));
+            var files = new Array();
+            files = appicon.split('/');
+            var filename = files[files.length -1];
+            alert(filename);
+            fs.root.getFile(filename, { create: true, exclusive: false },
+                function (fileEntry) {
+                    alert('fileEntry : ' + JSON.stringify(fileEntry));
+                    //读文件
+                    fileEntry.file(function(file) {
+                        alert('file : ' + JSON.stringify(file));
+                        if(file.size > 0){ //判断文件大小
+                            imgobj.setAttribute('src',fileEntry.nativeURL);
+                        }else{
+                            downloadimage(imgobj,url,fileEntry.toURL());
+                        }
+                    }, onErrorReadFile);
+                }, onErrorCreateFile);
+        }, onErrorLoadFs);
+    }
+    //下载图片至本地
+    function downloadimage(imgobj,url,fileURL) {
+        var fileTransfer = new FileTransfer();
+        fileTransfer.download(
+            url,
+            fileURL,
+            function(entry) {
+                alert("download complete: " + JSON.stringify(entry));
+                imgobj.setAttribute('src',entry.nativeURL);
+            },
+            function(error) {
+                $toast.show("download error :" + JSON.stringify(error));
+            },
+            false,
+            {}
+        );
+    }
+    //读取文件失败响应
+    function onErrorReadFile(error){
+        $toast.show("文件读取失败 :" + error.toString());
+    }
+    //读取文件失败响应
+    function onErrorCreateFile(error){
+        $toast.show("文件创建失败 :" + error.toString());
+    }
+    //FileSystem加载失败回调
+    function  onErrorLoadFs(error){
+        $toast.show("文件系统加载失败 :" + error.toString())
+    }
+</script>
+</body>
+</html>
